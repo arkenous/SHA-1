@@ -28,7 +28,7 @@ public class SHA1 {
 
   public byte[] padding(byte[] message) {
     int original_byte_len = message.length;
-    long original_bit_len_long = original_byte_len * 8;
+    long original_bit_len = original_byte_len * 8;
 
     byte[] append_one = new byte[original_byte_len + 1];
     System.arraycopy(message, 0, append_one, 0, original_byte_len);
@@ -46,7 +46,7 @@ public class SHA1 {
       append_zeros[i] = (byte) 0x00;
     }
 
-    byte[] lengthArray = getLengthArray(original_bit_len_long);
+    byte[] lengthArray = getLengthArray(original_bit_len);
     byte[] padded = new byte[append_zeros.length + lengthArray.length];
     System.arraycopy(append_zeros, 0, padded, 0, append_zeros.length);
     System.arraycopy(lengthArray, 0, padded, append_zeros.length, lengthArray.length);
